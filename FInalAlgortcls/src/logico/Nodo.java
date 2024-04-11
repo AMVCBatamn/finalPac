@@ -5,7 +5,7 @@ public class Nodo {
 	 private int codValor;
 	 private String nombreUbicacion;
 	 private double latitud;
-	 //.
+	 //
 	 
 	public int getCodValor() {
 		return codValor;

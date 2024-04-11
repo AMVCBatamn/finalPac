@@ -7,7 +7,7 @@ public class Arista {
     private double longitud;
     private int peso;
     
-    //.
+    //
     
 	public Nodo getUbicacionOrigen() {
 		return ubicacionOrigen;

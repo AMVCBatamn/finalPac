@@ -1,7 +1,7 @@
 package logico;
 
 import java.util.ArrayList;
-//ir haciendo los metodos porx
+//ir haciendo los metodos plx
 public class Grafo {
 	
 	 private ArrayList<Nodo> misNodos;
