@@ -3,7 +3,7 @@ package logico;
 import java.util.ArrayList;
 
 public class Grafo {
-	//
+	
 	 private ArrayList<Nodo> misNodos;
 	 private ArrayList<Arista> misAristas;
 	 
