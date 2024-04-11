@@ -10,7 +10,7 @@ public class Nodo {
 	public int getCodValor() {
 		return codValor;
 	}
-	
+	//
 	public void setCodValor(int codValor) {
 		this.codValor = codValor;
 	}
