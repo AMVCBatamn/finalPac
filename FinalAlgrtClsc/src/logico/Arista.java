@@ -13,6 +13,7 @@ public class Arista {
 		return ubicacionOrigen;
 	}
 	
+	
 	public void setUbicacionOrigen(Nodo ubicacionOrigen) {
 		this.ubicacionOrigen = ubicacionOrigen;
 	}

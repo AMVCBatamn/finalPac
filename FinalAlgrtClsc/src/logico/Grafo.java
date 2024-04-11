@@ -20,6 +20,7 @@ public class Grafo {
 		return misAristas;
 	}
 	
+	
 	public void setMisAristas(ArrayList<Arista> misAristas) {
 		this.misAristas = misAristas;
 	}

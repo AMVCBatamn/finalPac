@@ -11,6 +11,7 @@ public class Nodo {
 		return codValor;
 	}
 	
+	
 	public void setCodValor(int codValor) {
 		this.codValor = codValor;
 	}
