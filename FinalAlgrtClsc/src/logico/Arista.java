@@ -1,18 +1,28 @@
 package logico;
 
 public class Arista {
-	
+    
+	private int codigo;
     private Nodo ubicacionOrigen;
     private Nodo ubicacionDestino;
-    private double longitud;
     private int peso;
+	private static int codigoArista = 1;
     
-    //
-    
+	public Arista(Nodo ubicacionOrigen, Nodo ubicacionDestino, int peso) {
+		super();
+		this.codigo = codigoArista++;
+		this.ubicacionOrigen = ubicacionOrigen;
+		this.ubicacionDestino = ubicacionDestino;
+		this.peso = peso;
+	}
+	
+	public int getCodigo() {
+		return codigo;
+	}
+	
 	public Nodo getUbicacionOrigen() {
 		return ubicacionOrigen;
 	}
-	
 	
 	public void setUbicacionOrigen(Nodo ubicacionOrigen) {
 		this.ubicacionOrigen = ubicacionOrigen;
@@ -26,14 +36,6 @@ public class Arista {
 		this.ubicacionDestino = ubicacionDestino;
 	}
 	
-	public double getLongitud() {
-		return longitud;
-	}
-	
-	public void setLongitud(double longitud) {
-		this.longitud = longitud;
-	}
-	
 	public int getPeso() {
 		return peso;
 	}
@@ -41,7 +43,8 @@ public class Arista {
 	public void setPeso(int peso) {
 		this.peso = peso;
 	}
-    
-    
 
+	public static int getCodigoArista() {
+		return codigoArista;
+	}
 }
