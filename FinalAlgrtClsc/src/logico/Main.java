@@ -53,7 +53,7 @@ public class Main {
 
 		
 		// KRUSKAL
-        ArrayList<Arista> aristasKruskal = grafo.calcularKruskal();
+        ArrayList<Arista> aristasKruskal = grafo.calcularKruskal();  ///Luego hagabra un metodo para imprimir.
 
         System.out.println("Aristas del árbol de expansión mínima (Kruskal):");
         for (Arista arista : aristasKruskal) {
@@ -67,16 +67,21 @@ public class Main {
 		
         System.out.println("\n\n\n");
 		
+        
+        
+        //PRIM
+        
+        ArrayList<Arista> aristasPrim = grafo.calcularPrim();
+        grafo.imprimirAristasPrim(aristasPrim);
+        
+        
+        
+        
 		
 		//MATRIZ DE ADYACENCIA CON PESO:
 		grafo.imprimirMatrizAdyacencia(grafo.generarMatrizAdyacencia());
 
-		
-		
-		
-		
-		
-		
+	
 		
 		///DESPUES DE ELIMINAR EL NODO B:
 		grafo.eliminarNodo(B);

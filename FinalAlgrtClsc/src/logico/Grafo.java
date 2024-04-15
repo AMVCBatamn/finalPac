@@ -267,4 +267,82 @@ public class Grafo {
         }
 	}
 	
+	///HACER UN METODAO PARA IMPRIMIR EL RESULTADO
+	
+	//METODOS PRIM//
+	
+	public ArrayList<Arista> calcularPrim(){
+		
+		ArrayList<Arista> aristasPrim = new ArrayList<>();
+		boolean [] visitados = new boolean[misNodos.size()];
+		int [] minPesos = new int[misNodos.size()];
+		
+		int [] padres = new int [misNodos.size()];
+		
+		for (int i = 0; i < misNodos.size(); i++) {
+			minPesos[i] = Integer.MAX_VALUE;
+	    }
+		
+		minPesos[0] = 0;
+		padres[0] = -1;
+		
+		for (int i = 0; i < misNodos.size()-1; i++) {
+			
+			int u = minimoPeso(minPesos,visitados);
+			visitados[u] = true;
+			
+			for (Arista arista : misNodos.get(u).getMisAristas()) {
+				
+				int v = misNodos.indexOf(arista.getUbicacionDestino());
+				int miPeso = arista.getPeso();
+				
+				if (!visitados[v] && miPeso < minPesos[v]) {
+					padres[u] = v;
+					minPesos[v] = miPeso;
+				}
+			}
+		}
+		
+		for (int i = 1; i < misNodos.size(); i++) {
+			aristasPrim.add(new Arista(misNodos.get(i), misNodos.get(padres[i]), minPesos[i]));
+		}
+
+		return aristasPrim;
+	}
+
+	private int minimoPeso(int[] minPesos, boolean[] visitados) {
+		
+		int minimo = Integer.MAX_VALUE;
+	    int minIndex = -1;
+	    
+	    for (int i = 0; i < minPesos.length; i++) {
+	        if (!visitados[i] && minPesos[i] < minimo) {
+	            minimo = minPesos[i];
+	            minIndex = i;
+	        }
+	    }
+	    
+	    return minIndex;
+	}
+	
+	public void imprimirAristasPrim(ArrayList<Arista> aristasPrim) {
+	    
+		int total = 0;
+		
+		System.out.println("Aristas del árbol de expansión mínima (Prim):");
+		
+	    for (int i = 0; i < aristasPrim.size(); i++) {
+	        
+	    	Arista arista = aristasPrim.get(i);
+	    	
+	        System.out.println("Ruta " + (i + 1) + ": Desde " + arista.getUbicacionOrigen().getNombreUbicacion() + " hasta " + 
+	        		arista.getUbicacionDestino().getNombreUbicacion() + ", hay una distancia de: " + arista.getPeso() + " km");
+	        
+	        total += arista.getPeso();
+	    }
+	    
+	    System.out.println("\nCosto total del árbol de expansión mínima: " + total);
+	}
+
+	
 }
