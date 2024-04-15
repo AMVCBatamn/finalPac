@@ -267,7 +267,24 @@ public class Grafo {
         }
 	}
 	
-	///HACER UN METODAO PARA IMPRIMIR EL RESULTADO
+	public void imprimirAristasKruskal(ArrayList<Arista> aristasKruskal) {
+	    
+		int total = 0;
+		
+		System.out.println("Aristas del árbol de expansión mínima (Kruskal):");
+		
+	    for (int i = 0; i < aristasKruskal.size(); i++) {
+	        
+	    	Arista arista = aristasKruskal.get(i);
+	    	
+	        System.out.println("Ruta " + (i + 1) + ": Desde " + arista.getUbicacionOrigen().getNombreUbicacion() + " hasta " + 
+	        		arista.getUbicacionDestino().getNombreUbicacion() + ", hay una distancia de: " + arista.getPeso() + " km");
+	        
+	        total += arista.getPeso();
+	    }
+	    
+	    System.out.println("\nCosto total del árbol de expansión mínima: " + total);
+	}
 	
 	//METODOS PRIM//
 	
@@ -342,6 +359,64 @@ public class Grafo {
 	    }
 	    
 	    System.out.println("\nCosto total del árbol de expansión mínima: " + total);
+	}
+	
+	
+	//METODOS FLOYD WARSHALL//
+	
+	public int [][] calcularFloydWarchall(){
+		
+		int dist[][] = generarMatrizAdyacencia();
+		int numN = misNodos.size();
+		
+		for (int i = 0; i < numN; i++) {
+			
+			for(int j = 0; j < numN; j++) {
+				
+				if (i != j && dist[i][j] == 0) {
+					dist[i][j] = Integer.MAX_VALUE; // Tratamos los caminos no directos como infinito.
+	            }
+			}
+		}
+		
+		for (int k = 0; k < numN; k++) {
+			
+	        for (int i = 0; i < numN; i++) {
+	        	
+	            for (int j = 0; j < numN; j++) {
+	            	
+	                if (dist[i][k] != Integer.MAX_VALUE && dist[k][j] != Integer.MAX_VALUE && dist[i][k] + dist[k][j] < dist[i][j]) {
+	                    dist[i][j] = dist[i][k] + dist[k][j];
+	                }
+	            }
+	        }
+	    }
+		
+		return dist;
+	}
+	
+	public void imprimirAristas(ArrayList<Arista> aristas, boolean mostrarPeso, boolean mostrarTotal, String algoritmo) {
+	    int total = 0;
+	    System.out.println("Aristas " + algoritmo + ":");
+	    System.out.printf("%-8s %-16s %-16s %s%n", "Ruta", "Origen", "Destino", mostrarPeso ? "Peso" : "");
+
+	    for (int i = 0; i < aristas.size(); i++) {
+	        Arista arista = aristas.get(i);
+	        String ruta = String.valueOf(i + 1);
+	        String origen = arista.getUbicacionOrigen().getNombreUbicacion();
+	        String destino = arista.getUbicacionDestino().getNombreUbicacion();
+	        String peso = mostrarPeso ? String.valueOf(arista.getPeso()) : "";
+
+	        System.out.printf("%-8s %-16s %-16s %s%n", ruta, origen, destino, peso);
+
+	        if (mostrarPeso) {
+	            total += arista.getPeso();
+	        }
+	    }
+
+	    if (mostrarTotal && mostrarPeso) {
+	        System.out.println("Costo Total: " + total);
+	    }
 	}
 
 	

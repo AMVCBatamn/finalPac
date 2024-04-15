@@ -26,6 +26,38 @@ public class Main {
 		grafo.insertarArista(arista2);
 		grafo.insertarArista(arista3);
 		
+		
+		// Calcular y mostrar resultados de Dijkstra
+	    int[] dist = grafo.calcularDijkstra(grafo.generarMatrizAdyacencia(), grafo.buscarIndexByNombre("Moca"));
+	    grafo.imprimirResultadosDijkstra(dist, "Moca");
+
+	    // Calcular y mostrar resultados de Kruskal
+	    ArrayList<Arista> aristasKruskal = grafo.calcularKruskal();
+	    grafo.imprimirAristas(aristasKruskal, true, true, "Kruskal");
+
+	    // Calcular y mostrar resultados de Prim
+	    ArrayList<Arista> aristasPrim = grafo.calcularPrim();
+	    grafo.imprimirAristas(aristasPrim, true, true, "Prim");
+
+	    // Calcular y mostrar resultados de Floyd Warshall
+	    int[][] distanciasFloyd = grafo.calcularFloydWarchall();
+	    System.out.println("\nMatriz Floyd Warshall: ");
+	    grafo.imprimirMatrizAdyacencia(distanciasFloyd);
+
+		
+	    System.out.println("\nMatriz Normal: ");
+	    grafo.imprimirMatrizAdyacencia(grafo.generarMatrizAdyacencia());
+	    System.out.println();
+	    
+	    grafo.imprimirAristas(grafo.getMisAristas(), true, true, "Normales");
+		
+		
+		
+		
+		
+		/*
+		
+		
 		///ANTES DE ELIMINAR EL NODO B:
 		System.out.println("ANTES DE ELIMINAR EL NODO B:\n");
 		System.out.println("Nodos/Ubicaciones en el grafo:");
@@ -105,5 +137,8 @@ public class Main {
 		//MATRIZ DE ADYACENCIA CON PESO:
 		grafo.imprimirMatrizAdyacencia(grafo.generarMatrizAdyacencia());
 		
+	*/
+	    
 	}
+	
 }
