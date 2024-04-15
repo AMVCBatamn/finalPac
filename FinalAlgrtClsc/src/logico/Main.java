@@ -36,9 +36,27 @@ public class Main {
 		                       " destino " + a.getUbicacionDestino().getNombreUbicacion() +
 		                       " con distancia de " + a.getPeso());
 		}
+
+		System.out.println("\n\n\n");
+		
+		//PROBANDO DIJKSTRA:
+		int [] dist = grafo.calcularDijkstra(grafo.generarMatrizAdyacencia(), grafo.buscarIndexByNombre("Moca"));
+		grafo.imprimirResultadosDijkstra(dist, "Moca");
+		
+		///IMPLEMENTAR LUEGO PARA LAS DOS SELLECCIONES DEL VISUAL 
+		//int distanciaDestino = distancias[misNodos.indexOf(destino)];
+
+		
+		
+		//MATRIZ DE ADYACENCIA CON PESO:
+		grafo.imprimirMatrizAdyacencia(grafo.generarMatrizAdyacencia());
+
+		
 		
 		///DESPUES DE ELIMINAR EL NODO B:
 		grafo.eliminarNodo(B);
+		
+		
 		System.out.println("\n\n\nDESPUES DE ELIMINAR EL NODO B:\n");
 		System.out.println("Nodos/Ubicaciones en el grafo:");
 		
@@ -52,6 +70,9 @@ public class Main {
 		                       " destino " + arista.getUbicacionDestino().getNombreUbicacion() +
 		                       " con distancia de " + arista.getPeso());
 		}
+		
+		
+		//MATRIZ DE ADYACENCIA CON PESO:
+		grafo.imprimirMatrizAdyacencia(grafo.generarMatrizAdyacencia());
 	}
-
 }
