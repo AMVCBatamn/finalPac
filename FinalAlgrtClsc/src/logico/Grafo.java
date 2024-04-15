@@ -1,6 +1,8 @@
 package logico;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Grafo {
 	
@@ -147,7 +149,9 @@ public class Grafo {
 		}
 		return index;
 	}
-
+	
+	//METODOS DIJKSTRA//
+	
     public int[] calcularDijkstra(int matrizAdyacencia[][], int origen)  {
     	
     	int numN = misNodos.size();
@@ -214,4 +218,53 @@ public class Grafo {
         	System.out.printf("%-" + maxLen + "s \t\t %" + Math.abs(maxLen-maxVal) + "d km %n", destino, distancia[i]);
         }
     }
+	
+	//METODOS KRUSKAL//
+	
+	public ArrayList<Arista> calcularKruskal(){
+		
+		ArrayList<Arista> aristasKruskal = new ArrayList<Arista>();
+		ArrayList<Arista> aristasOrdenadas = new ArrayList<Arista>(misAristas);
+		
+		Collections.sort(aristasOrdenadas,Comparator.comparing(Arista::getPeso));
+		
+		int[] padres = new int[misNodos.size()];
+		
+		for (int i = 0; i < misNodos.size(); i++) {
+			padres[i] = i;
+		}
+		
+		for (Arista arista: aristasOrdenadas) {
+			
+			int origen = buscarIndexByNombre(arista.getUbicacionOrigen().getNombreUbicacion());
+			int destino = buscarIndexByNombre(arista.getUbicacionDestino().getNombreUbicacion());
+			
+			if(encontrar(padres, origen) != encontrar(padres, destino)) {
+				aristasKruskal.add(arista);
+				unir(padres, origen, destino);
+			} 
+		}
+		
+		return aristasKruskal;	
+	}
+	
+	private int encontrar(int[] padres, int nodo) {
+        
+		if (padres[nodo] != nodo) {
+            padres[nodo] = encontrar(padres, padres[nodo]);
+        }
+		
+        return padres[nodo];
+    }
+	
+	private void unir(int[] padres, int nodo1, int nodo2) {
+		
+		int raiz1 = encontrar(padres, nodo1);
+        int raiz2 = encontrar(padres, nodo2);
+        
+        if (raiz1 != raiz2) {
+            padres[raiz1] = raiz2;
+        }
+	}
+	
 }

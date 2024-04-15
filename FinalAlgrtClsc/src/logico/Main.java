@@ -1,5 +1,7 @@
 package logico;
 
+import java.util.ArrayList;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -16,11 +18,13 @@ public class Main {
 		
 		Arista arista1 = new Arista(A, B, 5);
 		Arista arista2 = new Arista(B, C, 8);
+		Arista arista3 = new Arista(A, C, 1);
 		
 		///PROBANDO LOS METODOS:
 		
 		grafo.insertarArista(arista1);
 		grafo.insertarArista(arista2);
+		grafo.insertarArista(arista3);
 		
 		///ANTES DE ELIMINAR EL NODO B:
 		System.out.println("ANTES DE ELIMINAR EL NODO B:\n");
@@ -44,13 +48,34 @@ public class Main {
 		grafo.imprimirResultadosDijkstra(dist, "Moca");
 		
 		///IMPLEMENTAR LUEGO PARA LAS DOS SELLECCIONES DEL VISUAL 
-		//int distanciaDestino = distancias[misNodos.indexOf(destino)];
+		int distDest = dist[grafo.buscarIndexByNombre("Santiago")];
+		System.out.println("\nSolo distancia a un destino: "+ distDest + "\n\n\n");
 
+		
+		// KRUSKAL
+        ArrayList<Arista> aristasKruskal = grafo.calcularKruskal();
+
+        System.out.println("Aristas del árbol de expansión mínima (Kruskal):");
+        for (Arista arista : aristasKruskal) {
+            System.out.println("Origen " + arista.getUbicacionOrigen().getNombreUbicacion() +
+                    " destino " + arista.getUbicacionDestino().getNombreUbicacion() +
+                    " con distancia de " + arista.getPeso());
+        }
+		
+		
+		
+		
+        System.out.println("\n\n\n");
 		
 		
 		//MATRIZ DE ADYACENCIA CON PESO:
 		grafo.imprimirMatrizAdyacencia(grafo.generarMatrizAdyacencia());
 
+		
+		
+		
+		
+		
 		
 		
 		///DESPUES DE ELIMINAR EL NODO B:
@@ -74,5 +99,6 @@ public class Main {
 		
 		//MATRIZ DE ADYACENCIA CON PESO:
 		grafo.imprimirMatrizAdyacencia(grafo.generarMatrizAdyacencia());
+		
 	}
 }
